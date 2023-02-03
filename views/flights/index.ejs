@@ -16,7 +16,7 @@
         <td><%= f.airline %></td>
         <td><%= f.airport %></td>
         <td><%= f.flightNo %></td>
-        <td><%= f.departs %></td>
+        <td class="<%=f.departs < new Date() ? 'past-date':''%>"><%= f.departs %></td>
       </tr>
     <% }); %>
   </tbody>

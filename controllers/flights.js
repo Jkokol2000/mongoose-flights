@@ -26,6 +26,6 @@ function create(req, res) {
 
 function index(req, res) {
     Flights.find({}, function(err, flights) {
-        res.render('flights/index', { flights });
+        res.render('flights/index', { flights});
     });
 }
