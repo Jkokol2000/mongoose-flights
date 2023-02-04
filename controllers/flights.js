@@ -25,7 +25,8 @@ function create(req, res) {
 }
 
 function index(req, res) {
-    Flights.find({}, function(err, flights) {
-        res.render('flights/index', { flights});
+    Flights.find({}).sort('departs').exec(function(err, flights) {
+       // let sortedFlights = flights.sort((a,b) => a-b )
+        res.render('flights/index', {flights});
     });
 }
