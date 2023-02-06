@@ -36,11 +36,13 @@
 <form id="new-destination-form" method="POST" action="/flights/<%=flight._id%>/destinations">
 <label>Airport</label>
 <select name="airport">
-    <option>AUS</option>
-    <option>DEN</option>
-    <option>LAX</option>
-    <option>ATL</option>
-    <option>DFW</option>
+    <% const usedAirports = [flight.airport, ...flight.destinations.map(destination => destination.airport)]; %>
+    <% const allAirports = ['AUS', 'DEN', 'LAX', 'ATL', 'DFW']; %>
+        <% allAirports.forEach(airport => {
+            if (!usedAirports.includes(airport)) { %>
+                <option><%= airport %></option>
+            <% }
+        }); %>
 </select><br>
 <input type="datetime-local" name="arrival" min="">
 <br><br>
