@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+
+<section id="show-page">
+    <div>Flight Number: </div>
+    <div><%= flight.flightNo %></div><br>
+    <div>Airport:</div>
+    <div><%= flight.airport %></div><br>
+    <div>Airline:</div>
+    <div><%= flight.airline %></div><br>
+    <div>Departure Date:</div>
+    <div class="<%=flight.departs < new Date() ? 'past-date':''%>"><%= flight.departs %></div>
+</section>
+<br>
+<% if (flight.destinations) { %>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Airport</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% flight.destinations.forEach(function(r) { %>
+                <tr>
+                    <td><%= r.arrival %></td>
+                    <td><%= r.airport %></td>
+                </tr>
+           <% }); %>
+        </tbody>
+    </table>
+<% } else { %>
+    <br>
+<% } %>
+<br>
+<h3>New Destination</h3>
+<form id="new-destination-form" method="POST" action="/destinations">
+<label>Airport</label>
+<select name="airport">
+    <option>AUS</option>
+    <option>DEN</option>
+    <option>LAX</option>
+    <option>ATL</option>
+    <option>DFW</option>
+</select><br>
+<input type="datetime-local" name="arrival" min="<%=flight.departs%>">
+<br><br>
+<button type="submit">Add Destination</button> 
+</form>
+
+
+<%- include('../partials/footer') %>

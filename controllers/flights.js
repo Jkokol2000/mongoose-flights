@@ -1,7 +1,8 @@
 module.exports = {
     new: newFlight,
     create,
-    index
+    index,
+    show
 }
 
 const Flights = require('../models/flights');
@@ -11,7 +12,7 @@ function newFlight(req, res) {
     const dt = newFlight.departs;
     let departsDate = `${dt.getFullYear()}-${(dt.getMonth() + 1).toString().padStart(2, '0')}`
     departsDate += `-${dt.getDate().toString().padStart(2, '0')}T${dt.toTimeString().slice(0, 5)}`;
-    res.render('flights/new', { departsDate });
+    res.render('flights/new',{departsDate, title: "New Flight"});
 }
 
 function create(req, res) {
@@ -27,6 +28,12 @@ function create(req, res) {
 function index(req, res) {
     Flights.find({}).sort('departs').exec(function(err, flights) {
        // let sortedFlights = flights.sort((a,b) => a-b )
-        res.render('flights/index', {flights});
+        res.render('flights/index',{flights, title: "All Flights"});
     });
+}
+
+function show(req,res) {
+    Flights.findById(req.params.id, function(err, flight){
+        res.render('flights/show', { title: 'Flight Details', flight});
+    })
 }

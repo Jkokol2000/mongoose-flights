@@ -10,3 +10,7 @@ a {
 .past-date {
   color: red;
 }
+
+ .active {
+    text-decoration: none;
+ }

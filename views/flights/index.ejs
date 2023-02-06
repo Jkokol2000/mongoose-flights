@@ -4,7 +4,7 @@
 <table>
   <thead>
     <tr>
-      <th>Airline</th>
+      <th>Flight</th>
       <th>Airport</th>
       <th>Flight Number</th>
       <th>Boarding Date</th>
@@ -13,13 +13,14 @@
   <tbody>
     <% flights.forEach(function(f) { %>
       <tr>
-        <td><%= f.airline %></td>
-        <td><%= f.airport %></td>
         <td><%= f.flightNo %></td>
+        <td><%= f.airport %></td>
+        <td><%= f.airline %></td>
         <td class="<%=f.departs < new Date() ? 'past-date':''%>"><%= f.departs %></td>
+        <td><a href="/flights/<%= f._id %>">Details</a></td>
       </tr>
     <% }); %>
   </tbody>
 </table>
 
-<%- include('../partials/header') %>
+<%- include('../partials/footer') %>

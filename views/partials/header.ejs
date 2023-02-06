@@ -4,12 +4,11 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flights</title>
+  <title><%= title %></title>
   <link rel='stylesheet' href='/stylesheets/style.css' />
 </head>
 <body>
-
   <nav>
-    <a href="/flights/new">Book a Flight!</a>
-    <a href="/flights">Check your Flights!</a>
+    <a href="/flights/new" <%- title === 'New Flight' ? 'class = "active"' : '' %>>Create new Flight!</a>
+    <a href="/flights" <%- title === 'All Flights' ? 'class = "active"' : '' %>>Check your Flights!</a>
   </nav>
