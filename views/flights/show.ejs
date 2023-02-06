@@ -11,7 +11,7 @@
     <div class="<%=flight.departs < new Date() ? 'past-date':''%>"><%= flight.departs %></div>
 </section>
 <br>
-<% if (flight.destinations) { %>
+<% if (flight.destinations.length) { %>
     <table>
         <thead>
             <tr>
@@ -33,7 +33,7 @@
 <% } %>
 <br>
 <h3>New Destination</h3>
-<form id="new-destination-form" method="POST" action="/destinations">
+<form id="new-destination-form" method="POST" action="/flights/<%=flight._id%>/destinations">
 <label>Airport</label>
 <select name="airport">
     <option>AUS</option>
@@ -42,7 +42,7 @@
     <option>ATL</option>
     <option>DFW</option>
 </select><br>
-<input type="datetime-local" name="arrival" min="<%=flight.departs%>">
+<input type="datetime-local" name="arrival" min="">
 <br><br>
 <button type="submit">Add Destination</button> 
 </form>
