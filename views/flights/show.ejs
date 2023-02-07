@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <% flight.destinations.forEach(function(r) { %>
+            <% flight.destinations.sort((a, b) => a.arrival - b.arrival).forEach(function(r) { %>
                 <tr>
                     <td><%= r.arrival %></td>
                     <td><%= r.airport %></td>
@@ -44,7 +44,7 @@
             <% }
         }); %>
 </select><br>
-<input type="datetime-local" name="arrival" min="">
+<input type="datetime-local" name="arrival" min="<%= flight.departs.toISOString().substring(0,16) %>">
 <br><br>
 <button type="submit">Add Destination</button> 
 </form>
