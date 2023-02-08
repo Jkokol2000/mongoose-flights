@@ -20,8 +20,6 @@ function create(req, res) {
     const flight = new Flights(req.body);
     flight.flightNo = Math.floor(Math.random() * (9999 - 10 + 1) + 10);
     flight.save(function(err) {
-        if (err) return res.redirect('/flights/new');
-        console.log(flight);
         res.redirect('/flights')
     });
 }

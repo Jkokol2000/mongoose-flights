@@ -48,7 +48,12 @@
 <br><br>
 <button type="submit">Add Destination</button> 
 </form>
-
+<h2>All Tickets</h2>
+<ul>
+    <%tickets.forEach(function(ticket) { %>
+        <li><form action="/tickets/<%= ticket._id %>?_method=DELETE" method="POST"><%=ticket.seat %> - $<%= ticket.price %> - <button type="submit">Delete</button></form></li>
+    <% }); %>
+</ul>
 <a href="/flights/<%=flight._id%>/tickets/new">New Ticket</a>
 
 
